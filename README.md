@@ -31,5 +31,43 @@ I eventually want to use speakers connected to audio out to play sound, try a te
 
 * [Switched to the audio out instead of HDMI](https://www.raspberrypi.org/documentation/configuration/audio-config.md)
 
-However, I don't hear sound. It sounds like the speaker are trying to make a noise, but something does not come out. TODO
+Headphones now work (a bit of noise on the line), but the desktop speakers do not. Forcing to HDMI does not seem to work, at least with those same speakers.
+
+## Docker SD card image
+
+Now to prep an SD card for the rpi2 that is geared to just doing docker stuff. I used this link:
+
+http://blog.hypriot.com/getting-started-with-docker-and-mac-on-the-raspberry-pi/
+
+Used hypriot-rpi-20151115-132854.img.zip.
+
+I used a secondary SD card instead of the one that had the NOOBS image, just in case I wanted to get back to it later.
+
+Placed the SD card and booted up, connected to HDMI display. Plugged in ethernet after boot.
+
+During boot, saw messages about `cfg80211: Calling CRDA to update world regulatory domain`, followed a recommendation [here](https://github.com/raspberrypi/linux/issues/1149) to do:
+
+`sudo apt-get install crda`
+
+but this failed with some "Could not resolve 'mirrordirector.raspbian.org'" errors, so skipping that for now. Will be using docker for new images anyway.
+
+For wifi, had to create wpa_supplicant.conf and set it up with the network info.
+
+Did a `apt-get install make` since the speakerbot project uses a make file.
+
+## Docker stuff
+
+See speakerbot repo. Once got a Dockerfile set up:
+
+```
+docker build -t speakerbot .
+
+docker run -it speakerbot
+```
+
+
+## Unix commands
+
+For shutdown: `sudo poweroff`
+For restart: `sudo reboot`
 
