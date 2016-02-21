@@ -65,6 +65,11 @@ docker build -t speakerbot .
 docker run -it speakerbot
 ```
 
+## Node for rpi2:
+
+* eliperelman: arm7 download from https://nodejs.org/en/download/
+* tbranyen: arch linux via pacman
+* eliperelman: Nodesource installer for Raspian (Debian) works well too: https://nodejs.org/en/download/package-manager/
 
 ## Unix commands
 
